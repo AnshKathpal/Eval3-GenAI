@@ -8,7 +8,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import PyPDFLoader
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
-
+from langchain.chat_models import ChatOpenAI
 
 sys.path.append("../..")
 
@@ -38,6 +38,8 @@ vectordb = Chroma.from_documents(
     documents=splits,
     embedding=embiddings
 )
+
+llm = ChatOpenAI(model_name = "gpt-3.5-turbo", temperature=1)
 
 if __name__ == "__main__":
     app.run(debug=True)
